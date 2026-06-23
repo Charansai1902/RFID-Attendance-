@@ -1,0 +1,113 @@
+body {
+    background: rgb(230, 240, 180);
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    padding-bottom: 0px;
+    text-align: center;
+    color: #2b2323;
+    margin: 0;
+}
+
+h2 {
+    background-image: linear-gradient(-195deg, rgb(255, 0, 132), rgb(10, 152, 247));
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    font-size: 28px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    z-index: 1; 
+    text-align: center;
+    position: relative;
+}
+
+.attendance-summary {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+    background: transparent;
+}
+
+.attendance-summary p {
+    background-image: linear-gradient(-195deg, rgb(21, 25, 251), rgb(13, 255, 45));
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-align: center;
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+table {
+    width: 90%;
+    margin: 0 auto 30px auto;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+    backdrop-filter: blur(10px);
+}
+
+th, td {
+    color: #000000;
+    padding: 12px;
+    border: 1px solid rgb(180, 180, 180);
+    text-align: center;
+    font-size: 16px;
+}
+
+th {
+    background: rgb(211, 86, 86);
+    color: #ffffff;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+tr:hover {
+    background: rgba(229, 33, 33, 0.2);
+    transition: 0.3s;
+}
+
+input {
+    background: linear-gradient(200deg, #ffd7f9, #edf3f0);
+    padding: 10px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 300px;
+    z-index: 1;
+    position: relative;
+    text-align: center;
+}
+
+footer {
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    background: linear-gradient(200deg, #2b2323, #305055);
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    margin-top: 40px;
+    animation: fadeIn 1s ease-in-out;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+html {
+    scroll-behavior: smooth;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="rep.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>   
+    <h2>📊 Student Attendance Dashboard</h2>
+
+    <div id="attendance-summary" class="attendance-summary"></div>
+    
+    <input type="text" id="search" onkeyup="searchTable()" placeholder="Search by Roll No, Name, or RFID UID">
+
+    <table>
+        <thead>
+            <tr>
+                <th>Roll Number</th>
+                <th>Name</th>
+                <th>RFID UID</th>
+                <th>Total Classes</th>
+                <th>Total Classes Present</th>
+                <th>Attendance %</th>
+            </tr>
+        </thead>
+        <tbody id="attendance-body"></tbody>
+    </table>
+
+    <footer>
+        <p>© 2026 Charan Sai, 23001000061, KL University, IoT. All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
