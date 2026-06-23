@@ -1,72 +1,124 @@
 # RFID-Based Student Attendance System
 
-## RFID-Based Student Attendance System Using ESP32, MFRC522, Node.js, and Web Dashboard
+An IoT-enabled Smart Attendance Management System that automates classroom attendance using RFID technology, ESP32, and a web-based dashboard. The system eliminates manual attendance, reduces human error, prevents proxy attendance, and provides real-time attendance monitoring through wireless communication.
 
 ---
 
-## Abstract
+# Table of Contents
 
-The RFID-Based Student Attendance System is an Internet of Things (IoT) solution that automates classroom attendance using RFID technology and wireless communication. Traditional attendance methods consume valuable lecture time, are prone to human error, and allow proxy attendance. This project eliminates these issues by integrating an ESP32 microcontroller, an MFRC522 RFID scanner, and a Node.js backend server with a live web dashboard.
+* Overview
+* Features
+* System Architecture
+* Hardware Components
+* Software Stack
+* Sensor Integration
+* Workflow
+* Communication Protocols
+* Folder Structure
+* Installation
+* Future Scope
+* Author
 
-When a student scans an RFID card, the ESP32 reads the card's Unique Identifier (UID) and transmits it over Wi-Fi to the backend server through an HTTP POST request. The server validates the UID against the registered student database, records attendance with date and time, and updates the dashboard instantly. The system also provides immediate hardware feedback using LEDs, a buzzer, and a 20x4 LCD display.
+---
 
-This project demonstrates the practical implementation of IoT, Embedded Systems, Full-Stack Web Development, and Network Communication in educational environments.
+# Overview
+
+The RFID-Based Student Attendance System is designed to simplify and automate attendance management using Internet of Things (IoT) technology.
+
+The project consists of an ESP32 Wroom DEVKIT V1 connected to an MFRC522 RFID Reader Module. Every student is assigned a unique RFID card containing a Unique Identifier (UID). When a student scans the RFID card, the ESP32 reads the UID and sends it to a Node.js backend server over Wi-Fi using an HTTP POST request.
+
+The backend validates the UID against the student database, records attendance with the current date and time, and instantly updates the web dashboard. The ESP32 also provides immediate feedback using LEDs, an LCD display, and a buzzer.
 
 ---
 
 # Features
 
-* Automated attendance marking
-* Contactless RFID card scanning
-* Real-time attendance updates
-* Wi-Fi based communication
+* RFID-based attendance system
+* Automatic attendance marking
+* Real-time attendance monitoring
+* Wi-Fi communication using ESP32
 * HTTP REST API integration
-* Instant UID validation
-* Live attendance dashboard
-* Timestamp logging
+* Live web dashboard
+* Student search functionality
+* Attendance percentage calculation
 * LCD status display
-* Green LED for successful attendance
-* Red LED for invalid cards
-* Buzzer confirmation
-* Student database management
-* Low-cost hardware implementation
-* Easy deployment in classrooms
+* Green LED success indication
+* Red LED invalid card indication
+* Buzzer notification
+* Timestamp recording
+* Fast and reliable attendance system
 
 ---
 
-# Project Objectives
+# System Architecture
 
-The primary objectives of this project are:
-
-* Eliminate manual attendance processes
-* Prevent proxy attendance
-* Reduce attendance recording time
-* Improve attendance accuracy
-* Store attendance digitally
-* Provide real-time attendance monitoring
-* Build a scalable IoT-based attendance solution
-* Demonstrate embedded system and web integration
+```text
+Student RFID Card
+        │
+        ▼
+MFRC522 RFID Reader
+        │
+      SPI
+        │
+        ▼
+ESP32 Wroom DEVKIT V1
+        │
+      Wi-Fi
+        │
+HTTP POST Request
+        │
+        ▼
+Node.js Express Server
+        │
+Database Validation
+        │
+Attendance Recorded
+        │
+        ▼
+Live Web Dashboard
+```
 
 ---
 
-# Technology Stack
+# Hardware Components
 
-## Embedded Systems
+| Component              | Description                                  |
+| ---------------------- | -------------------------------------------- |
+| ESP32 Wroom DEVKIT V1  | Main IoT microcontroller with built-in Wi-Fi |
+| MFRC522 RFID Reader    | Reads RFID cards and extracts UID            |
+| RFID Cards             | Student identification cards                 |
+| 20x4 LCD Display (I2C) | Displays attendance status                   |
+| Green LED              | Indicates successful attendance              |
+| Red LED                | Indicates invalid card                       |
+| Active Piezo Buzzer    | Audio feedback after scanning                |
+| Breadboard             | Circuit prototyping                          |
+| Jumper Wires           | Hardware connections                         |
+| USB Cable              | Power and programming                        |
 
-* ESP32 Wroom DEVKIT V1
-* Arduino Framework
+---
+
+# Software Stack
+
+## Embedded System
+
+* Arduino IDE
 * C++
+* ESP32 Board Package
 
-## Communication
+## Libraries
 
-* Wi-Fi
-* HTTP POST Requests
-* REST API
+* WiFi.h
+* HTTPClient.h
+* SPI.h
+* MFRC522.h
+* LiquidCrystal_I2C.h
+* Wire.h
 
 ## Backend
 
 * Node.js
 * Express.js
+* REST API
 
 ## Frontend
 
@@ -74,272 +126,121 @@ The primary objectives of this project are:
 * CSS3
 * JavaScript
 
-## Libraries
+---
 
-* WiFi.h
-* HTTPClient.h
-* SPI.h
-* MFRC522
-* LiquidCrystal_I2C
+# Sensor Integration
+
+## Primary Sensor
+
+### MFRC522 RFID Reader Module
+
+The MFRC522 RFID Reader is the primary sensing component of this project. It detects RFID cards operating at 13.56 MHz and reads the Unique Identifier (UID) stored inside each card.
+
+Specifications
+
+* Operating Frequency: 13.56 MHz
+* Communication Interface: SPI
+* Operating Voltage: 3.3V
+* Reading Distance: 2–5 cm
+* Card Support: MIFARE and ISO/IEC 14443 Type A
+
+Working
+
+1. Student places RFID card near the reader.
+2. MFRC522 detects the RFID card.
+3. The UID is extracted.
+4. UID is sent to ESP32.
+5. ESP32 sends the UID to the server over Wi-Fi.
 
 ---
 
-# Hardware Components
+# Communication Technologies
 
-| Component              | Purpose                                 |
-| ---------------------- | --------------------------------------- |
-| ESP32 Wroom DEVKIT V1  | Main controller with Wi-Fi connectivity |
-| MFRC522 RFID Module    | Reads RFID cards                        |
-| RFID Cards/Tags        | Student identification                  |
-| 20x4 LCD Display (I2C) | Displays attendance status              |
-| Green LED              | Successful validation indicator         |
-| Red LED                | Invalid card indicator                  |
-| Active Piezo Buzzer    | Audio confirmation                      |
-| Breadboard             | Circuit assembly                        |
-| Jumper Wires           | Electrical connections                  |
-| USB Cable              | Power and programming                   |
-
----
-
-# Software Components
-
-* Arduino IDE
-* Visual Studio Code
-* Node.js
-* Express.js
-* Git
-* GitHub
-* Web Browser
-
----
-
-# System Architecture
-
-```
-RFID Card
-      │
-      ▼
-MFRC522 RFID Reader
-      │
-      ▼
-ESP32 Wroom DEVKIT V1
-      │
-      │  Wi-Fi
-      ▼
-HTTP POST Request
-      │
-      ▼
-Node.js Express Server
-      │
-      ▼
-Student Database Validation
-      │
-      ▼
-Attendance Stored
-      │
-      ▼
-Live Web Dashboard Updated
-```
-
----
-
-# Working Principle
-
-The system begins by powering the ESP32 microcontroller. During initialization, the ESP32 establishes a secure connection to the configured Wi-Fi network. Once connected, it initializes the RFID reader, LCD display, LEDs, and buzzer before entering an idle state.
-
-The RFID reader continuously monitors for RFID cards placed near it. When a student scans their RFID card, the MFRC522 module reads the card's Unique Identifier (UID). The ESP32 converts this UID into a string format and prepares an HTTP POST request containing the UID.
-
-The request is transmitted over the local Wi-Fi network to the Node.js backend server. Upon receiving the request, the server searches the registered student database for a matching UID.
-
-If the UID exists in the database, the server records the student's attendance along with the current date and time. The attendance information is stored and simultaneously reflected on the live web dashboard.
-
-The ESP32 receives the server response and provides immediate feedback:
-
-For successful validation:
-
-* Green LED turns ON
-* Buzzer beeps
-* LCD displays "Present"
-
-For failed validation:
-
-* Red LED turns ON
-* LCD displays "Absent"
-
-After displaying the result for a few seconds, the system resets and waits for the next RFID card.
+* RFID
+* SPI Communication
+* Wi-Fi
+* HTTP POST
+* REST API
+* TCP/IP
+* JSON
 
 ---
 
 # Workflow
 
-### Step 1: Device Initialization
+### Step 1
 
-* ESP32 powers on.
-* RFID reader initializes.
-* LCD initializes.
-* LEDs initialize.
-* Buzzer initializes.
+ESP32 powers on and initializes the RFID reader, LCD, LEDs, and buzzer.
 
----
+### Step 2
 
-### Step 2: Wi-Fi Connection
+ESP32 connects to the configured Wi-Fi network.
 
-* ESP32 connects to the configured Wi-Fi network.
-* Network connection is verified.
+### Step 3
 
----
+System waits for an RFID card.
 
-### Step 3: Waiting State
+### Step 4
 
-* LCD displays the scan prompt.
-* RFID reader continuously waits for a student card.
+Student scans the RFID card.
 
----
+### Step 5
 
-### Step 4: RFID Card Detection
+MFRC522 reads the UID.
 
-* Student places RFID card near the scanner.
-* MFRC522 reads the card.
-* UID is extracted.
+### Step 6
 
----
+ESP32 sends the UID to the backend server using an HTTP POST request.
 
-### Step 5: Data Transmission
+### Step 7
 
-* ESP32 creates an HTTP POST request.
-* UID is sent to the backend server.
+The backend validates the UID against the student database.
 
-Example Payload
+### Step 8
 
-```json
-{
-  "uid": "A4F23D19"
-}
-```
+If the UID is valid:
 
----
+* Attendance is recorded.
+* Green LED turns ON.
+* Buzzer beeps.
+* LCD displays "Present".
+* Dashboard updates instantly.
 
-### Step 6: Server Validation
+### Step 9
 
-The backend server:
+If the UID is invalid:
 
-* Receives UID
-* Searches student database
-* Validates student identity
-* Records attendance
-* Generates response
+* Attendance is rejected.
+* Red LED turns ON.
+* LCD displays "Absent".
 
----
+### Step 10
 
-### Step 7: Success Response
-
-If UID is valid:
-
-* Attendance recorded
-* Timestamp stored
-* Dashboard updated
-* Green LED ON
-* Buzzer beeps
-* LCD displays:
-
-```
-Attendance Marked
-
-Present
-```
-
----
-
-### Step 8: Failure Response
-
-If UID is invalid:
-
-* Attendance rejected
-* No database entry created
-* Red LED ON
-* LCD displays:
-
-```
-Card Not Found
-
-Absent
-```
-
----
-
-### Step 9: Reset
-
-The ESP32 clears the LCD, turns off LEDs, and returns to waiting mode for the next RFID card.
-
----
-
-# HTTP API
-
-## Endpoint
-
-```
-POST /mark-attendance
-```
-
----
-
-### Request
-
-```json
-{
-  "uid": "A4F23D19"
-}
-```
-
----
-
-### Success Response
-
-```json
-{
-    "status":"success",
-    "message":"Attendance Marked"
-}
-```
-
----
-
-### Failure Response
-
-```json
-{
-    "status":"failed",
-    "message":"Invalid Card"
-}
-```
+The system resets and waits for the next student.
 
 ---
 
 # Folder Structure
 
-```
+```text
 RFID-Attendance-System/
 
-│
-├── Arduino/
-│   ├── RFID_Attendance.ino
-│
-├── Backend/
-│   ├── server.js
-│   ├── routes/
-│   ├── controllers/
-│   ├── package.json
-│
-├── Frontend/
-│   ├── index.html
-│   ├── style.css
-│   ├── script.js
-│
-├── Images/
-│
-├── README.md
-│
-└── LICENSE
+│── Arduino/
+│     RFID_Attendance.ino
+
+│── Backend/
+│     server.js
+
+│── Frontend/
+│     index.html
+│     style.css
+│     script.js
+
+│── Images/
+
+│── README.md
+
+│── LICENSE
 ```
 
 ---
@@ -349,144 +250,65 @@ RFID-Attendance-System/
 ## Clone Repository
 
 ```bash
-git clone https://github.com/username/RFID-Attendance-System.git
+git clone https://github.com/yourusername/RFID-Attendance-System.git
 ```
 
----
-
-## Backend Setup
+## Backend
 
 ```bash
 cd Backend
-```
-
-Install dependencies
-
-```bash
 npm install
-```
-
-Start server
-
-```bash
 node server.js
 ```
 
----
+## ESP32
 
-## ESP32 Setup
-
-1. Open Arduino IDE.
-2. Install ESP32 board package.
-3. Install required libraries.
-4. Configure Wi-Fi credentials.
-5. Upload the code.
+1. Install ESP32 Board Package.
+2. Install all required libraries.
+3. Configure Wi-Fi credentials.
+4. Upload the Arduino sketch.
 
 ---
 
-# Required Libraries
+# Future Scope
 
-```text
-WiFi.h
-
-HTTPClient.h
-
-SPI.h
-
-MFRC522.h
-
-LiquidCrystal_I2C.h
-```
-
----
-
-# Future Improvements
-
-* Fingerprint authentication
-* Face recognition integration
-* Cloud database
-* Firebase support
-* Mobile application
-* SMS notifications
-* Email notifications
-* Attendance analytics
-* Student portal
-* Teacher login
-* Admin dashboard
-* QR code attendance
-* NFC support
-* Multiple classroom support
-* Cloud deployment
-* AI-based attendance analytics
-
----
-
-# Applications
-
-* Schools
-* Colleges
-* Universities
-* Coaching Institutes
-* Corporate Offices
-* Laboratories
-* Libraries
-* Research Centers
-* Industrial Training Centers
-
----
-
-# Advantages
-
-* Fast attendance marking
-* Eliminates paperwork
-* Prevents proxy attendance
-* Real-time monitoring
-* Accurate attendance records
-* Wireless communication
-* Low maintenance
-* Easy installation
-* Cost-effective
-* Scalable architecture
-
----
-
-# Limitations
-
-* Requires Wi-Fi connectivity
-* RFID cards can be misplaced
-* Initial hardware setup required
-* Local server dependency unless deployed
+* Face Recognition Attendance
+* Fingerprint Authentication
+* Mobile Application
+* Firebase Integration
+* Cloud Database
+* Email Notifications
+* SMS Alerts
+* QR Code Attendance
+* Multi-Classroom Support
+* AI-based Attendance Analytics
 
 ---
 
 # Learning Outcomes
 
-This project demonstrates practical knowledge of:
+This project demonstrates knowledge in:
 
-* Embedded Systems
 * Internet of Things (IoT)
+* Embedded Systems
 * RFID Technology
+* ESP32 Programming
+* Wireless Communication
 * REST API Development
-* HTTP Communication
+* Full Stack Web Development
 * Node.js Backend Development
-* Frontend Web Development
+* Real-Time Dashboard Development
 * Hardware and Software Integration
-* Sensor Communication
-* Network Programming
-* Real-Time Data Processing
-* Full-Stack Development
 
 ---
 
 # Author
 
-Charan Sai
+**Charan Sai**
 
-B.Tech Internet of Things (IoT)
+B.Tech – Internet of Things (IoT)
 
 Full Stack Web Developer
-
-Embedded Systems Enthusiast
 
 Machine Learning Enthusiast
 
@@ -496,4 +318,4 @@ Business Intelligence and Data Analytics Research Contributor
 
 # License
 
-This project is licensed under the MIT License. Feel free to use, modify, and distribute this project for educational and research purposes.
+This project is licensed under the MIT License. You are free to use, modify, and distribute this project for educational and research purposes.
